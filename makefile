@@ -1,10 +1,6 @@
 default: main
-sketch: main.c
-	clang -std=c11 -Wall -pedantic -g $@.c -lSDL2 -o $@ \
-		   -fsanitize=undefined -fsanitize=address
-
-test: sketch.c test.c
-	clang -std=c11 -Wall -pedantic -g sketch.c test.c -o $@ \
+main: main.c logic.c draw.c
+	clang -std=c11 -Wall -pedantic -g $@.c draw.c logic.c -lSDL2_gfx -lSDL2 -o $@ \
 		   -fsanitize=undefined -fsanitize=address
 
 %: %.c
